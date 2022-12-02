@@ -49,7 +49,7 @@
         </li>
       </ul>
       <form class="d-flex">
-        <button class="btn btn-outline-warning" type="submit">Book Now</button>
+        <button class="btn btn-outline-warning" type="signin.vue">Book Now</button>
       </form>
     </div>
   </div>
@@ -357,6 +357,46 @@ span{
     color:#fff;
 }
 
+/*--Container--*/
+.container,
+.container-fluid,
+.container-xxl,
+.container-xl,
+.container-lg,
+.container-md {
+  width: 100%;
+  padding-right: var(--bs-gutter-x, 0.75rem);
+  padding-left: var(--bs-gutter-x, 0.75rem);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 576px) {
+  .container-sm, .container {
+    max-width: 540px;
+  }
+}
+@media (min-width: 768px) {
+  .container-md, .container-sm, .container {
+    max-width: 720px;
+  }
+}
+@media (min-width: 992px) {
+  .container-lg, .container-md, .container-sm, .container {
+    max-width: 960px;
+  }
+}
+@media (min-width: 1200px) {
+  .container-xl, .container-lg, .container-md, .container-sm, .container {
+    max-width: 1140px;
+  }
+}
+@media (min-width: 1400px) {
+  .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
+    max-width: 1320px;
+  }
+}
+
 /*--Masthead--*/
 header.masthead {
   padding-top: 10.5rem;
@@ -449,6 +489,10 @@ header.masthead .masthead-heading {
 }
 
 /*SERVICES PAGE*/
+.text-center {
+  text-align: center !important;
+}
+
 .carousel-inner img{
   width:500px;
   height:500px;
@@ -584,14 +628,7 @@ header.masthead .masthead-heading {
   background-size: 100% 100%;
 }
 
-/* rtl:options: {
-  "autoRename": true,
-  "stringMap":[ {
-    "name"    : "prev-next",
-    "search"  : "prev",
-    "replace" : "next"
-  } ]
-} */
+
 .carousel-control-prev-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3e%3c/svg%3e");
 }
@@ -832,6 +869,7 @@ section#track{
   border: #027DB8;
   border-radius: 1rem;
 }
+
 
 
 
