@@ -47,6 +47,7 @@
                       type="email"
                       id="form3Example3"
                       class="form-control form-control-sm"
+                      v-model="email"
                     />
                   </div>
 
@@ -59,6 +60,7 @@
                       id="formTextExample2"
                       class="form-control form-control-sm"
                       aria-describedby="textExample2"
+                      v-model="password"
                     />
                   </div>
 
@@ -80,10 +82,9 @@
                     </div>
 
                     <div class="btn-group me-2 top-0">
-                      <a
+                      <a @click="login"
                         style="background-color: #0d6efd"
                         class="btn btn-primary btn-sm btn-block text-light shadow rounded border-0"
-                        href="index.html"
                         role="button"
                         >Sign in</a
                       >
@@ -139,8 +140,27 @@
 </template>
 
 <script>
+import firebase from 'firebase'
 export default {
-  name: 'partner-signin'
+  name: "PartnerSignIn",
+  data() {
+    return{
+    email: "",
+    password: "",
+    initials: ""
+  }
+},
+  methods: {
+    login() {
+      firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
+        (user) => {
+          this.$router.replace('/Dashboard');
+        })
+        .catch((e) => {
+          alert(e.message) 
+        })
+    }
+  }
 }
 </script>
 
