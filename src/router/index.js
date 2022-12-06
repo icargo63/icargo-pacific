@@ -3,9 +3,10 @@ import { createRouter, createWebHistory } from 'vue-router'
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: '/', component: () => import('../views/LandingPage.vue') },
+    { name:'Landingpage',
+      path: '/', 
+      component: () => import('../views/Landingpage.vue') },
     { path: '/sign-in', component: () => import('../views/SignIn.vue') },
-    { path: '/sign-in', component: () => import('../views/Signin.vue') },
     {
       path: '/create-account',
       component: () => import('../views/CreateAccount.vue')
@@ -33,6 +34,13 @@ const router = createRouter({
     {
       path: '/partner-sign-up',
       component: () => import('../views/PartnerSignUp.vue')
+    },
+    {
+      path: '/about',
+      component: () => import('../views/AboutView.vue'),
+      meta:{
+        requiresAuth: true
+      }
     }
   ]
 })

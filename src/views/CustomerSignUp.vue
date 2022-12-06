@@ -5,10 +5,10 @@
       <div style="background-color: #f8f9fa" class="row">
         <div class="col-sm-6 px-0 d-none d-sm-block">
           <img
-            src="../assets/img/register.jpg"
+            src="../assets/img/delivery-image.jpg"
             alt="Login image"
             class="w-100 vh-100 img-fluid"
-            style="object-fit: cover; object-position: center"
+            style="object-fit: cover; object-position: left"
           />
         </div>
 
@@ -21,10 +21,11 @@
                 <div
                   class="fa-stack fa-1x d-flex position-absolute top-0 end-0 pt-3"
                 >
-                  <i
+                  <a href="/"><i  
                     style="color: #0d6efd"
                     class="fa-sharp fa-solid fa-house"
-                  ></i>
+                    ></i>
+                  </a>
                 </div>
               </div>
 
@@ -71,13 +72,14 @@
               </div>
 
               <div class="form-outline mb-4">
-                <label class="form-label" for="form3Example3"
+                <label class="form-label" for="form3Example3" 
                   >Email address</label
                 >
                 <input
                   type="email"
                   id="form3Example3"
                   class="form-control form-control-sm"
+                  v-model="email"
                 />
               </div>
 
@@ -99,6 +101,7 @@
                   id="formTextExample2"
                   class="form-control form-control-sm"
                   aria-describedby="textExample2"
+                  v-model="password"
                 />
               </div>
 
@@ -115,28 +118,26 @@
               </div>
 
               <div class="pt-1 mb-4 d-flex justify-content-center">
+                <div class="btn-group me-2 top-0">
+                  <a
+                  router-link to="/create-account"
+                    style="background-color: white"
+                    class="btn btn-primary btn-sm btn-block text-dark shadow rounded border border-2"
+                    href="/customer-sign-in"
+                    role="button"
+                    >Back</a
+                  >
+                </div>
 
                 <div class="btn-group me-2 top-0">
-                      <a
-                        style="background-color: white"
-                        class="btn btn- primary btn-sm btn-block text-dark shadow rounded border border-2"
-                        href="signin.html"
-                        role="button"
-                        ><router-link to="/" class="text-decoration-none">Back</router-link></a
-                      >
-                    </div>
-
-                 <div class="btn-group me-2 top-0">
-                      <a
-                        style="background-color: white"
-                        class="btn btn- primary btn-sm btn-block text-dark shadow rounded border border-2"
-                        href="signin.html"
-                        role="button"
-                        ><router-link to="/dashboard" class="text-decoration-none">Sign up</router-link></a
-                      >
-                    </div>
-
-
+                  <a @click="signup"
+                    style="background-color: #0d6efd"
+                    class="btn btn-primary btn-sm btn-block text-light shadow rounded border-0"
+    
+                    role="button"
+                    >Sign up</a
+                  >
+                </div>
               </div>
             </form>
           </div>
@@ -147,9 +148,29 @@
 </template>
 
 <script>
+import firebase from 'firebase'
 export default {
-  name: 'customer-signup'
+  name: "CustomerSignup",
+  data() {
+    return{
+    email: "",
+    password: "",
+    initials: ""
+  }
+},
+  methods: {
+    signup() {
+      firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
+        (user) => {
+          this.$router.replace('/customer-sign-in');
+        })
+        .catch((e) => {
+          alert(e.message) 
+        })
+    }
+  }
 }
+
 </script>
 
 <style>
@@ -173,7 +194,18 @@ export default {
 }
 
 /*--Container--*/
-
+.container,
+.container-fluid,
+.container-xxl,
+.container-xl,
+.container-lg,
+.container-md {
+  width: 100%;
+  padding-right: var(--bs-gutter-x, 0.75rem);
+  padding-left: var(--bs-gutter-x, 0.75rem);
+  margin-right: auto;
+  margin-left: auto;
+}
 
 @media (min-width: 576px) {
   .container-sm,

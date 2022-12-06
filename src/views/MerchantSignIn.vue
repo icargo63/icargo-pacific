@@ -5,10 +5,10 @@
       <div style="background-color: #f8f9fa" class="row">
         <div class="col-sm-6 px-0 d-none d-sm-block">
           <img
-            src="../assets/img/register2.jpg"
+            src="../assets/img/delivery-image.jpg"
             alt="Login image"
             class="w-100 vh-100 img-fluid"
-            style="object-fit: cover; object-position: center"
+            style="object-fit: cover; object-position: left"
           />
         </div>
 
@@ -16,15 +16,16 @@
           <div
             class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5"
           >
-            <form style="width: 23rem">
+            <form style="width: 25rem">
               <div class="icons p-1">
                 <div
                   class="fa-stack fa-1x d-flex position-absolute top-0 end-0 pt-3"
                 >
-                  <i
+                  <a href="/"><i
                     style="color: #0d6efd"
                     class="fa-sharp fa-solid fa-house"
-                  ></i>
+                    ></i>
+                  </a>
                 </div>
               </div>
 
@@ -72,19 +73,19 @@
                       <a
                         style="background-color: white"
                         class="btn btn-primary btn-sm btn-block text-dark shadow rounded border border-2"
-                        href="signin.html"
+                        href="/Sign-in"
                         role="button"
-                        ><router-link to="/" class="text-decoration-none">Back</router-link></a
+                        >Back</a
                       >
                     </div>
 
                     <div class="btn-group me-2 top-0">
                       <a
-                        style="background-color: white"
-                        class="btn btn- primary btn-sm btn-block text-dark shadow rounded border border-2"
-                        href="signin.html"
+                        style="background-color: #0d6efd"
+                        class="btn btn-primary btn-sm btn-block text-light shadow rounded border-0"
+                        href="Landingpage.vue"
                         role="button"
-                        ><router-link to="/dashboard" class="text-decoration-none">Sign in</router-link></a
+                        >Sign in</a
                       >
                     </div>
                   </div>
@@ -120,9 +121,13 @@
                   </div>
 
                   <div class="pt-1 mb-4 d-flex justify-content-center">
-                <p>Don't have an account yet?</p>
-                  <router-link class="nav text-warning" to="/customer-sign-up" exact> Sign up</router-link>
-              </div>
+                    <p>
+                      Don't have an account yet?
+                      <a href="/merchant-sign-up" class="link-warning"
+                        >Sign up</a
+                      >
+                    </p>
+                  </div>
                 </div>
               </div>
             </form>

@@ -80,9 +80,9 @@
           </li>
         </ul>
         <form class="d-flex">
-          <button type="button" class="btn btn-warning btn-md  m-2 text-white">
-              <router-link class="route" to="/sign-up">Book Now</router-link>
-            </button>
+          <button type="submit" @click.stop.prevent="submit()" class="btn btn-outline-warning">
+            Book Now
+          </button>
         </form>
       </div>
     </div>
@@ -97,7 +97,7 @@
         for logistics and supply chain management
       </h3>
       <h2>
-        <a class="btn btn-round btn-primary text-uppercase" href="signin.vue"
+        <a class="btn btn-round btn-primary text-uppercase" href="/Sign-in"
           >Book Now</a
         >
       </h2>
@@ -160,7 +160,7 @@
         </h2>
       </div>
       <div
-        id="carousels"
+        id="carouselExampleControls"
         class="carousel slide"
         data-ride="carousel"
       >
@@ -246,7 +246,7 @@
                   style="width: 27em; margin-left: 1em"
                 />
                 <div class="card-body">
-                  <h5 class="card-title">Adve Freight Forwarding</h5>
+                  <h5 class="card-title">Advance Freight Forwarding</h5>
                   <p class="card-text">
                     Freight forwarding is the strategic logistics planning
                     and<br />
@@ -263,7 +263,7 @@
           </div>
           <a
             class="carousel-control-prev"
-            href="#carousels"
+            href="#carouselExampleControls"
             role="button"
             data-slide="prev"
           >
@@ -272,7 +272,7 @@
           </a>
           <a
             class="carousel-control-next"
-            href="#carousels"
+            href="#carouselExampleControls"
             role="button"
             data-slide="next"
           >
@@ -283,65 +283,76 @@
       </div>
     </div>
   </section>
+  <!-- partnership-->
+  <div class="vh-100" id="partnership">
+    <div class="container-fluid">
+      <div style="background-color: #f8f9fa" class="row">
+        <div class="col-sm-6 px-0 d-none d-sm-block">
+          <img
+            src="../assets/img/parcel-image.png"
+            alt="Login image"
+            class="w-100 vh-100"
+            style="object-fit: cover; object-position: left"
+          />
+        </div>
 
-
-  <!--- partnership -->
-  <section class="vh-100" id="partner">
-  <div class="container-fluid">
-    <div class="row">
-
-      <div class="col-sm-6 px-0 d-none d-sm-block">
-        <img src="../assets/img/signup.png"
-          alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: center;">
-      </div>
-      <div class="col-sm-6 text-black">
-
-        <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
-  
-            <form style="width: 23rem;">
-
-                <div class="heading my-3">
-                    <h4>Welcome to<span style="color: #0d6efd"> iCargo</span> <span style="color:#ffc800"> Pacific</span></h4>
-                    <h6 style="font-weight: 500;">Get started for free!</h6>
-                    <h5 style="font-size: 15px;">Sign up as</h5>
+        <div class="col-sm-6 text-black">
+          <div
+            class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5"
+          >
+            <form style="width: 23rem">
+              <div class="icons p-1">
+                <div
+                  class="fa-stack fa-1x d-flex position-absolute top-0 end-0 pt-3"
+                >
+                  <i
+                    style="color: #0d6efd"
+                    class="fa-sharp fa-solid fa-house"
+                  ></i>
                 </div>
-
-
-            <div class="form-outline mb-4">
-              <button type="button" class="btn btn-warning btn-md  m-2 text-white" style="width: 20rem;">
-              <router-link class="route" to="/customer-sign-up">Customer</router-link>
-              </button>
-            </div>
-
-            <div class="form-outline mb-4">
-              <button type="button" class="btn btn-warning btn-md  m-2 text-white" style="width: 20rem;">
-              <router-link class="route" to="/merchant-sign-up">Merchant</router-link>
-              </button>
-            </div>
-
-            <div class="form-outline mb-4">
-              <button type="button" class="btn btn-warning btn-md  m-2 text-white" style="width: 20rem;">
-              <router-link class="route" to="/partner-sign-up">Partner</router-link>
-              </button>
-            </div>
-
-
-              <div class="pt-1 mb-4 d-flex justify-content-center">
-                <p>Already have an account?</p>
-                  <router-link class="nav text-warning" to="/sign-in" exact> Sign in</router-link>
               </div>
 
-              <div class="form-outline mb-4 pt-1 d-flex justify-content-center">
-              <button type="button" class="btn btn-warning btn-md  m-2 text-white">
-              <router-link class="route" to="/">Back</router-link>
-              </button>
-            </div>
-           </form>
+              <div class="heading my-3">
+                <h4>
+                  Welcome to<span style="color: #0d6efd"> iCargo</span>
+                  <span style="color: #ffc800"> Pacific</span>
+                </h4>
+                <h6 style="font-weight: 500">Get started for free!</h6>
+                <h5 style="font-size: 15px">Sign up as</h5>
+              </div>
+
+              <div class="form-outline mb-4 d-flex justify-content-center">
+                <a
+                  href="/customer-sign-up"
+                  class="btn btn-link btn-primary btn-md text-light"
+                  >Customer</a
+                >
+              </div>
+
+              <div class="form-outline mb-4 d-flex justify-content-center">
+                <a href="/merchant-sign-up" class="btn btn-primary"
+                  >Merchant</a
+                >
+              </div>
+
+              <div class="form-outline mb-4 d-flex justify-content-center">
+                <a href="/partner-sign-up" class="btn btn-primary"
+                  >Partner</a
+                >
+              </div>
+
+              <div class="pt-1 mb-4 d-flex justify-content-center">
+                <p>
+                  Already have an account?
+                  <a href="/Sign-in" class="link-warning">Sign in</a>
+                </p>
+              </div>
+            </form>
           </div>
+        </div>
       </div>
     </div>
   </div>
-</section>
 
   <!-- track-->
   <section class="page-section" id="track">
@@ -434,9 +445,19 @@
 
 <script>
 export default {
-  name: 'Landingpage'
+//   name: 'Landingpage'
+// },
+methods: {
+    submit(){
+      //if you want to send any data into server before redirection then you can do it here
+      this.$router.push("/Sign-in");
+    }
+  }
 }
+
 </script>
+
+
 
 <style>
 a {
@@ -547,45 +568,6 @@ header.masthead .masthead-heading {
     font-weight: 700;
     line-height: 4.5rem;
     margin-bottom: 4rem;
-  }
-}
-/*--Container--*/
-.container,
-.container-fluid,
-.container-xxl,
-.container-xl,
-.container-lg,
-.container-md {
-  width: 100%;
-  padding-right: var(--bs-gutter-x, 0.75rem);
-  padding-left: var(--bs-gutter-x, 0.75rem);
-  margin-right: auto;
-  margin-left: auto;
-}
-
-@media (min-width: 576px) {
-  .container-sm, .container {
-    max-width: 540px;
-  }
-}
-@media (min-width: 768px) {
-  .container-md, .container-sm, .container {
-    max-width: 720px;
-  }
-}
-@media (min-width: 992px) {
-  .container-lg, .container-md, .container-sm, .container {
-    max-width: 960px;
-  }
-}
-@media (min-width: 1200px) {
-  .container-xl, .container-lg, .container-md, .container-sm, .container {
-    max-width: 1140px;
-  }
-}
-@media (min-width: 1400px) {
-  .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
-    max-width: 1320px;
   }
 }
 
@@ -889,10 +871,6 @@ header.masthead .masthead-heading {
 }
 
 /*--Page Section--*/
-.text-center {
-  text-align: center !important;
-}
-
 .page-section {
   padding: 6rem 0;
 }
