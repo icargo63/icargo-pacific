@@ -36,11 +36,11 @@ const router = createRouter({
       component: () => import('../views/PartnerSignUp.vue')
     },
     {
-      path: '/about',
-      component: () => import('../views/AboutView.vue'),
+      path: '/Dashboard',
+      component: () => import('../views/Dashboard.vue'),
       meta:{
         requiresAuth: true
-      }
+      },
     }
   ]
 })

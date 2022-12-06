@@ -79,6 +79,7 @@
                   type="email"
                   id="form3Example3"
                   class="form-control form-control-sm"
+                  v-model="email"
                 />
               </div>
 
@@ -100,6 +101,7 @@
                   id="formTextExample2"
                   class="form-control form-control-sm"
                   aria-describedby="textExample2"
+                  v-model="password"
                 />
               </div>
 
@@ -127,10 +129,9 @@
                 </div>
 
                 <div class="btn-group me-2 top-0">
-                  <a
+                  <a @click="signup"
                     style="background-color: #0d6efd"
                     class="btn btn-primary btn-sm btn-block text-light shadow rounded border-0"
-                    href="Landingpage.vue"
                     role="button"
                     >Sign up</a
                   >
@@ -145,8 +146,27 @@
 </template>
 
 <script>
+import firebase from 'firebase'
 export default {
-  name: 'partner-signup'
+  name: "PartnerSignup",
+  data() {
+    return{
+    email: "",
+    password: "",
+    initials: ""
+  }
+},
+  methods: {
+    signup() {
+      firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
+        (user) => {
+          this.$router.replace('/customer-sign-in');
+        })
+        .catch((e) => {
+          alert(e.message) 
+        })
+    }
+  }
 }
 </script>
 
