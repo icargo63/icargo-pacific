@@ -50,6 +50,7 @@
                       >First name</label
                     >
                     <input
+                      v-model="firstName"
                       type="text"
                       id="form3Example1"
                       class="form-control form-control-sm fs-6"
@@ -62,6 +63,7 @@
                       >Last name</label
                     >
                     <input
+                      v-model="lastName"
                       type="text"
                       id="form3Example2"
                       class="form-control form-control-sm fs-6"
@@ -75,6 +77,7 @@
                   >Email address</label
                 >
                 <input
+                  v-model="email"
                   type="email"
                   id="form3Example3"
                   class="form-control form-control-sm"
@@ -84,6 +87,7 @@
               <div class="form-outline mb-4">
                 <label class="form-label" for="typePhone">Contact Number</label>
                 <input
+                  v-model="contact"
                   type="tel"
                   id="typePhone"
                   class="form-control form-control-sm"
@@ -95,6 +99,7 @@
                   >Preferred Password</label
                 >
                 <input
+                  v-model="password"
                   type="password"
                   id="formTextExample2"
                   class="form-control form-control-sm"
@@ -115,28 +120,29 @@
               </div>
 
               <div class="pt-1 mb-4 d-flex justify-content-center">
+                <div class="btn-group me-2 top-0">
+                  <a
+                    style="background-color: white"
+                    class="btn btn- primary btn-sm btn-block text-dark shadow rounded border border-2"
+                    role="button"
+                    ><router-link
+                      to="/partner-sign-in"
+                      class="text-decoration-none"
+                      >Back</router-link
+                    ></a
+                  >
+                </div>
 
                 <div class="btn-group me-2 top-0">
-                      <a
-                        style="background-color: white"
-                        class="btn btn- primary btn-sm btn-block text-dark shadow rounded border border-2"
-                        href="signin.html"
-                        role="button"
-                        ><router-link to="/" class="text-decoration-none">Back</router-link></a
-                      >
-                    </div>
-
-                 <div class="btn-group me-2 top-0">
-                      <a
-                        style="background-color: white"
-                        class="btn btn- primary btn-sm btn-block text-dark shadow rounded border border-2"
-                        href="signin.html"
-                        role="button"
-                        ><router-link to="/dashboard" class="text-decoration-none">Sign up</router-link></a
-                      >
-                    </div>
-
-
+                  <a
+                    @click="signUp"
+                    style="background-color: white"
+                    class="btn btn- primary btn-sm btn-block text-dark shadow rounded border border-2"
+                    role="button"
+                  >
+                    Sign up
+                  </a>
+                </div>
               </div>
             </form>
           </div>
@@ -146,9 +152,41 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'partner-signup'
+<script setup>
+import { ref } from 'vue'
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
+import { useRouter } from 'vue-router'
+const email = ref('')
+const password = ref('')
+// const firstName = ref('')
+// const lastName = ref('')
+// const contact = ref('')
+
+const router = useRouter()
+
+const signUp = () => {
+  const auth = getAuth()
+
+  createUserWithEmailAndPassword(
+    getAuth(),
+    email.value,
+    password.value
+    // firstName.value,
+    // lastName.value,
+    // contact.value,
+  )
+    .then((data) => {
+      alert('successfully registered')
+      console.log(auth.currentUser)
+      router.push('/dashboard')
+    })
+    .catch((error) => {
+      console.log(error.code)
+      alert(error.message)
+    })
+}
+const signInWithGoogle = () => {
+  // something
 }
 </script>
 
