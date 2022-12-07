@@ -143,6 +143,16 @@
                     Sign up
                   </a>
                 </div>
+                <div class="btn-group me-2 top-0">
+                  <a
+                    @click="signInWithGoogle"
+                    style="background-color: white"
+                    class="btn btn- primary btn-sm btn-block text-dark shadow rounded border border-2"
+                    role="button"
+                  >
+                    Sign In with Google
+                  </a>
+                </div>
               </div>
             </form>
           </div>
@@ -154,27 +164,22 @@
 
 <script setup>
 import { ref } from 'vue'
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup
+} from 'firebase/auth'
 import { useRouter } from 'vue-router'
 const email = ref('')
 const password = ref('')
-// const firstName = ref('')
-// const lastName = ref('')
-// const contact = ref('')
 
 const router = useRouter()
 
 const signUp = () => {
   const auth = getAuth()
 
-  createUserWithEmailAndPassword(
-    getAuth(),
-    email.value,
-    password.value
-    // firstName.value,
-    // lastName.value,
-    // contact.value,
-  )
+  createUserWithEmailAndPassword(getAuth(), email.value, password.value)
     .then((data) => {
       alert('successfully registered')
       console.log(auth.currentUser)
@@ -186,7 +191,16 @@ const signUp = () => {
     })
 }
 const signInWithGoogle = () => {
-  // something
+  const provider = new GoogleAuthProvider()
+
+  signInWithPopup(getAuth(), provider)
+    .then((result) => {
+      console.log(result.user)
+      router.push('/dashboard')
+    })
+    .catch((error) => {
+      // handle error
+    })
 }
 </script>
 
