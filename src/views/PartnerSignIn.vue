@@ -36,6 +36,7 @@
                 <h5 style="font-size: 15px" class="mt-3">
                   Enter your details below
                 </h5>
+                <p v-if="errMsg">{{ errMsg }}</p>
               </div>
 
               <div class="row mb-2">
@@ -43,6 +44,7 @@
                   <div class="form-outline mb-4">
                     <label class="form-label" for="form3Example3">Email</label>
                     <input
+                      v-model="email"
                       type="email"
                       id="form3Example3"
                       class="form-control form-control-sm"
@@ -54,6 +56,7 @@
                       >Password</label
                     >
                     <input
+                      v-model="password"
                       type="password"
                       id="formTextExample2"
                       class="form-control form-control-sm"
@@ -74,18 +77,21 @@
                         class="btn btn-primary btn-sm btn-block text-dark shadow rounded border border-2"
                         href="signin.html"
                         role="button"
-                        ><router-link to="/" class="text-decoration-none">Back</router-link></a
+                        ><router-link to="/sign-in" class="text-decoration-none"
+                          >Back</router-link
+                        ></a
                       >
                     </div>
 
                     <div class="btn-group me-2 top-0">
                       <a
+                        @click="signIn"
                         style="background-color: white"
                         class="btn btn- primary btn-sm btn-block text-dark shadow rounded border border-2"
-                        href="signin.html"
                         role="button"
-                        ><router-link to="/dashboard" class="text-decoration-none">Sign in</router-link></a
                       >
+                        Sign in
+                      </a>
                     </div>
                   </div>
 
@@ -120,9 +126,15 @@
                   </div>
 
                   <div class="pt-1 mb-4 d-flex justify-content-center">
-                <p>Don't have an account yet?</p>
-                  <router-link class="nav text-warning" to="/customer-sign-up" exact> Sign up</router-link>
-              </div>
+                    <p>Don't have an account yet?</p>
+                    <router-link
+                      class="nav text-warning"
+                      to="/partner-sign-up"
+                      exact
+                    >
+                      Sign up</router-link
+                    >
+                  </div>
                 </div>
               </div>
             </form>
@@ -133,9 +145,52 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'partner-signin'
+<script setup>
+import { ref } from 'vue'
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import { useRouter } from 'vue-router'
+const email = ref('')
+const password = ref('')
+const errMsg = ref()
+// const firstName = ref('')
+// const lastName = ref('')
+// const contact = ref('')
+
+const router = useRouter()
+
+const signIn = () => {
+  const auth = getAuth()
+
+  signInWithEmailAndPassword(
+    getAuth(),
+    email.value,
+    password.value
+    // firstName.value,
+    // lastName.value,
+    // contact.value,
+  )
+    .then((data) => {
+      alert('successfully registered')
+      console.log(auth.currentUser)
+      router.push('/dashboard')
+    })
+    .catch((error) => {
+      console.log(error.code)
+      switch (error.code) {
+        case 'auth/invalid-email':
+          errMsg.value = 'Invalid email'
+          break
+        case 'auth/user-not-found':
+          errMsg.value = 'No account with that email was found'
+          break
+        case 'auth/wrong-password':
+          errMsg.value = 'Incorrect password'
+          break
+      }
+    })
+}
+const signInWithGoogle = () => {
+  // something
 }
 </script>
 
