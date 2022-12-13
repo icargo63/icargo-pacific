@@ -1,73 +1,95 @@
-import { async } from '@firebase/util'
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
-import { createRouter, createWebHistory } from 'vue-router'
+import { async } from '@firebase/util';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { createRouter, createWebHistory } from 'vue-router';
+import Landingpage from '../views/LandingPage.vue';
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    { path: '/', component: () => import('../views/LandingPage.vue') },
-    { path: '/sign-in', component: () => import('../views/SignIn.vue') },
-    { path: '/sign-in', component: () => import('../views/Signin.vue') },
     {
-      path: '/create-account',
-      component: () => import('../views/CreateAccount.vue')
+      path: '/',
+      name: 'Landingpage',
+      component: Landingpage
+    },
+    //Signup
+    {
+      path: '/signup',
+      name: 'signup',
+      component: () => import('../views/SignUp.vue')
     },
     {
-      path: '/customer-sign-in',
-      component: () => import('../views/CustomerSignIn.vue')
-    },
-    {
-      path: '/customer-sign-up',
+      path: '/customer-signup',
+      name: 'customer-signup',
       component: () => import('../views/CustomerSignUp.vue')
     },
     {
-      path: '/merchant-sign-in',
-      component: () => import('../views/MerchantSignIn.vue')
-    },
-    {
-      path: '/merchant-sign-up',
+      path: '/merchant-signup',
+      name: 'merchant-signup',
       component: () => import('../views/MerchantSignUp.vue')
     },
     {
-      path: '/partner-sign-in',
-      component: () => import('../views/PartnerSignIn.vue')
-    },
-    {
-      path: '/partner-sign-up',
+      path: '/partner-signup',
+      name: 'partner-signup',
       component: () => import('../views/PartnerSignUp.vue')
     },
+
+    //Signin
+    {
+      path: '/signin',
+      name: 'signin',
+      component: () => import('../views/SignIn.vue')
+    },
+    {
+      path: '/customer-signin',
+      name: 'customer-signin',
+      component: () => import('../views/CustomerSignIn.vue')
+    },
+    {
+      path: '/merchant-signin',
+      name: 'merchant-signin',
+      component: () => import('../views/MerchantSignIn.vue')
+    },
+
+    {
+      path: '/partner-signin',
+      name: 'partner-signin',
+      component: () => import('../views/PartnerSignIn.vue')
+    },
+
+    //dashboard
     {
       path: '/dashboard',
+      name: 'Dashboard',
       component: () => import('../views/Dashboard.vue'),
       meta: {
         requiresAuth: true
       }
     }
   ]
-})
+});
 
 const getCurrentUser = () => {
   return new Promise((resolve, reject) => {
     const removeListener = onAuthStateChanged(
       getAuth(),
       (user) => {
-        removeListener()
-        resolve(user)
+        removeListener();
+        resolve(user);
       },
       reject
-    )
-  })
-}
+    );
+  });
+};
 
 router.beforeEach(async (to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     if (await getCurrentUser()) {
-      next()
+      next();
     } else {
-      next('/')
+      next('/');
     }
   } else {
-    next()
+    next();
   }
-})
-export default router
+});
+export default router;
